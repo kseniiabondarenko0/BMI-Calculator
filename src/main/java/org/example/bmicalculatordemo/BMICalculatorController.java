@@ -1,9 +1,12 @@
 package org.example.bmicalculatordemo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,6 +39,9 @@ public class BMICalculatorController {
 
     private final List<BMIRecord> records= new ArrayList<>();
 
+    private int measurementCount = 0;
+
+
 
     @FXML
     private void initialize() {
@@ -49,7 +55,7 @@ public class BMICalculatorController {
     }
 
     @FXML
-    private void onCalculateClick(){
+    protected void onCalculateClick(){
         try{
             // .replace() - to exclude if we write with , or .
             double weight = Double.parseDouble(bmiField.getText().replace(",", "."));
@@ -65,10 +71,45 @@ public class BMICalculatorController {
             double bmi = calculateBMI(height, weight);
             double bmr = calculateBMR(height, weight, age);
 
+            //IntelliJ proposed, nice format with 2 decimal digits
+            bmiResultLabel.setText("BMI: " + String.format("%.2f", bmi));
+            bmrResultLabel.setText("BMR: " + String.format("%.2f", bmr));
+
+            measurementCount++;
+            String label = "№" +  measurementCount;
+            records.add(new BMIRecord(label, bmi, bmr));
+
 
 
         }catch (NumberFormatException e){
             showAlert("Invalid Input", "Please enter valid numeric values");
+        }
+    }
+
+    @FXML
+    protected void onShowChartClick(){
+
+        if(records.isEmpty()){
+            showAlert("No data", "Please fill up data, at least one record");
+        }
+
+
+        try{
+            //reads the FXML file and builds all the UI nodes described in it
+            FXMLLoader loader = new FXMLLoader(BMICalculatorApp.class.getResource("BMIChartView.fxml"));
+
+            Scene chartScene = new Scene(loader.load(), 400, 400);
+
+            //Create the controller
+            BMICalculatorController chartController = loader.getController();
+            chartController.setRecords(records);
+
+            Stage stage = (Stage) bmiResultLabel.getScene().getWindow();
+
+            stage.setScene(chartScene);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -93,6 +134,7 @@ public class BMICalculatorController {
             return 10*weight + 6.25*height - 5*age - 161;
         }
     }
+
 
     private void showAlert(String title, String message){
 
