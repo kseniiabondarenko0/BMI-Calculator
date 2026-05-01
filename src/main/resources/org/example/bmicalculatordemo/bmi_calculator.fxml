@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="-7.0" prefHeight="571.0" prefWidth="346.0">
+      <VBox fx:id="BMICalculatorController" layoutX="-7.0" prefHeight="571.0" prefWidth="346.0">
          <children>
             <Label prefHeight="40.0" prefWidth="340.0" text="BMI and BMR calculator">
                <font>
@@ -66,7 +66,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>
                <font>
-                  <Font size="22.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
             <Separator prefWidth="200.0" />
