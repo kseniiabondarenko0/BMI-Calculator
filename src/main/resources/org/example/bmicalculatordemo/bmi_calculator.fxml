@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="482.0" prefWidth="339.0">
+      <VBox layoutX="-7.0" prefHeight="571.0" prefWidth="346.0">
          <children>
             <Label prefHeight="40.0" prefWidth="340.0" text="BMI and BMR calculator">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -22,7 +22,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="39.0" prefWidth="272.0">
+            <HBox prefHeight="23.0" prefWidth="310.0">
                <children>
                   <RadioButton fx:id="maleRadio" mnemonicParsing="false" text="Male">
                      <HBox.margin>
@@ -35,6 +35,74 @@
                      </HBox.margin></RadioButton>
                </children>
             </HBox>
+            <Label text="Weight (kg):">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="weightField" promptText="Example: 75">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Height(cm) : ">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="heightField" promptText="Example: 180">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin></TextField>
+            <Label text="Age: ">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="ageField" promptText="Example: 25">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin></TextField>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="277.0" text="Calculate BMI and BMR">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Separator prefWidth="200.0" />
+            <Label text="BMI">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="bmiResultLabel">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin></Label>
+            <Label text="BMR">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin></Label>
+            <Label fx:id="bmrResultLabel">
+               <VBox.margin>
+                  <Insets left="15.0" top="15.0" />
+               </VBox.margin>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="318.0" text="View BMI Chart">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
