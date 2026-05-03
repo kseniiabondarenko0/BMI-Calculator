@@ -1,10 +1,14 @@
 package org.example.bmicalculatordemo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import java.util.List;
 
 public class BMIChartController {
@@ -35,6 +39,20 @@ public class BMIChartController {
 
         bmiCategoryLabel.setText("Latest: " + String.format("%.2f", latestBmi) + "\tyour condition is: " + getBMICondition(latestBmi) );
 
+    }
+
+    @FXML
+    protected void onBackClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    BMICalculatorApp.class.getResource("bmi_calculator_view.fxml")
+            );
+            Scene scene = new Scene(loader.load(), 339, 631);
+            Stage stage = (Stage) bmiChart.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private String getBMICondition(double bmi){
