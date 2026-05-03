@@ -19,6 +19,10 @@ public class BMIChartController {
     @FXML
     private Label bmiCategoryLabel;
 
+
+
+
+
     //setRecords() — called by BMICalculatorController right after loading this
     public void setRecords(List<BMIRecord> records) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -45,7 +49,7 @@ public class BMIChartController {
     protected void onBackClick() {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    BMICalculatorApp.class.getResource("bmi_calculator_view.fxml")
+                    BMICalculatorApp.class.getResource("bmi_calculator.fxml")
             );
             Scene scene = new Scene(loader.load(), 339, 631);
             Stage stage = (Stage) bmiChart.getScene().getWindow();

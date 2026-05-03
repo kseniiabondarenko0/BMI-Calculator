@@ -20,8 +20,8 @@ public class BMICalculatorController {
     private RadioButton maleRadio;
     @FXML
     private RadioButton femaleRadio;
-    @FXML
-    private TextField bmiField;
+
+    @FXML private TextField weightField;
     @FXML
     private TextField heightField;
     @FXML
@@ -59,7 +59,7 @@ public class BMICalculatorController {
     protected void onCalculateClick(){
         try{
             // .replace() - to exclude if we write with , or .
-            double weight = Double.parseDouble(bmiField.getText().replace(",", "."));
+            double weight = Double.parseDouble(weightField.getText().replace(",", "."));
             double height = Double.parseDouble(heightField.getText().replace(",", "."));
             int age = Integer.parseInt(ageField.getText());
 
@@ -98,7 +98,7 @@ public class BMICalculatorController {
 
         try{
             //reads the FXML file and builds all the UI nodes described in it
-            FXMLLoader loader = new FXMLLoader(BMICalculatorApp.class.getResource("BMIChartView.fxml"));
+            FXMLLoader loader = new FXMLLoader(BMICalculatorApp.class.getResource("bmi_chart.fxml"));
 
             Scene chartScene = new Scene(loader.load(), 400, 400);
 
