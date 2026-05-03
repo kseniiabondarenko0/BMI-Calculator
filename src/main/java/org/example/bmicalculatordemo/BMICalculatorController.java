@@ -8,7 +8,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
-import java.awt.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class BMICalculatorController {
                 return;
             }
 
-            double bmi = calculateBMI(height, weight);
+            double bmi = calculateBMI(weight, height); // was with wrong order
             double bmr = calculateBMR(height, weight, age);
 
             //IntelliJ proposed, nice format with 2 decimal digits
@@ -91,6 +92,7 @@ public class BMICalculatorController {
 
         if(records.isEmpty()){
             showAlert("No data", "Please fill up data, at least one record");
+            return;
         }
 
 
@@ -101,7 +103,7 @@ public class BMICalculatorController {
             Scene chartScene = new Scene(loader.load(), 400, 400);
 
             //Create the controller
-            BMICalculatorController chartController = loader.getController();
+            BMIChartController chartController = loader.getController();
             chartController.setRecords(records);
 
             Stage stage = (Stage) bmiResultLabel.getScene().getWindow();
@@ -115,13 +117,14 @@ public class BMICalculatorController {
 
 
 
-    private double calculateBMI(double weight, double height){
+    private double calculateBMI(double weight, double heightInCm){
 
         // bmi = weight / (height^2 but in m)
         // IMPORTANT, now height is in cm
-        double bmi = weight / (height * height*100*100);
-        return bmi;
 
+        // had strange logic before, better to separate convertion to cm into two different parts
+        double heightInMeters = heightInCm / 100.0;
+        return weight / (heightInMeters * heightInMeters);
     }
 
     private double calculateBMR(double weight, double height, int age){
