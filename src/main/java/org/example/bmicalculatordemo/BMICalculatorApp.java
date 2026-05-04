@@ -10,13 +10,18 @@ import java.io.IOException;
 
 public class BMICalculatorApp  extends Application {
 
+    private static final AppState appState = new AppState();
+
+    public static AppState getAppState() {return appState;}
+
+
 
     @Override
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(BMICalculatorApp.class.getResource("bmi_calculator.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 400, 420);
+        Scene scene = new Scene(fxmlLoader.load(), 400, 640);
         // Configure and show the window.
         stage.setTitle("BMI and BMR Calculator");
         stage.setScene(scene);

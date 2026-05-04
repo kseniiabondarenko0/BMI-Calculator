@@ -38,11 +38,6 @@ public class BMICalculatorController {
 
 
 
-    private final List<BMIRecord> records= new ArrayList<>();
-
-    private int measurementCount = 0;
-
-
 
     @FXML
     private void initialize() {
@@ -70,15 +65,13 @@ public class BMICalculatorController {
             }
 
             double bmi = calculateBMI(weight, height); // was with wrong order
-            double bmr = calculateBMR(height, weight, age);
+            double bmr = calculateBMR(weight, height, age);
 
             //IntelliJ proposed, nice format with 2 decimal digits
             bmiResultLabel.setText("BMI: " + String.format("%.2f", bmi));
             bmrResultLabel.setText("BMR: " + String.format("%.2f", bmr));
 
-            measurementCount++;
-            String label = "№" +  measurementCount;
-            records.add(new BMIRecord(label, bmi, bmr));
+            BMICalculatorApp.getAppState().addMeasurement(bmi, bmr);
 
 
 
@@ -90,7 +83,7 @@ public class BMICalculatorController {
     @FXML
     protected void onShowChartClick(){
 
-        if(records.isEmpty()){
+        if(BMICalculatorApp.getAppState().getRecords().isEmpty()){
             showAlert("No data", "Please fill up data, at least one record");
             return;
         }
@@ -104,7 +97,7 @@ public class BMICalculatorController {
 
             //Create the controller
             BMIChartController chartController = loader.getController();
-            chartController.setRecords(records);
+            chartController.setRecords(BMICalculatorApp.getAppState().getRecords());
 
             Stage stage = (Stage) bmiResultLabel.getScene().getWindow();
 
